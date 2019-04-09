@@ -15,6 +15,8 @@ export const loginUser = (loginData) => dispatch => {
               window.alert(data.error)
             }
             if(data.message){
+                localStorage.setItem("token",data.access_token)
+                localStorage.setItem("user",JSON.stringify(data.data))
               window.alert(data.message)
             }
   })
