@@ -13,8 +13,8 @@ class App extends Component {
         <div className="App">
             <Router history={history}>
                 <div>
-                    <Route exact path="/" component={AllOfficesPage}/>
-                    <Route path="/login" component={LoginPage}/>
+                    <Route exact path="/" component={LoginPage}/>
+                    <Route exact path="/offices" component={AllOfficesPage}/>
                 </div>
             </Router>
         </div>

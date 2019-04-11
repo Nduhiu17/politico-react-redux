@@ -2,6 +2,8 @@ import {LOGIN_USER} from "./types";
 import history from '../history';
 
 
+
+
 export const loginUser = (loginData) => dispatch => {
     fetch('https://politico-api-server.herokuapp.com/api/v2/auth/login',{
         method: 'POST',
@@ -20,7 +22,7 @@ export const loginUser = (loginData) => dispatch => {
                 localStorage.setItem("user",JSON.stringify(data.data))
                 console.log(localStorage.getItem("token"))
                 window.alert(data.message)
-
+                history.push('/offices')
                   }
 
   })
@@ -34,9 +36,5 @@ export const loginUser = (loginData) => dispatch => {
           payload: user
         })
         );
-
-    if(localStorage.getItem("token")){
-            history.push('/')
-            }
 };
 
