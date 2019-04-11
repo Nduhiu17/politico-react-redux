@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { loginUser } from "../../actions/loginActions";
 import {connect} from "react-redux";
 
+
 class LoginForm extends Component {
       constructor(props){
       super(props);
@@ -27,8 +28,9 @@ class LoginForm extends Component {
       };
 
       this.props.loginUser(user)
-
   }
+
+
     render() {
         return (
             <div>

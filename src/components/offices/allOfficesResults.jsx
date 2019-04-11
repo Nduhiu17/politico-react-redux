@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
+import propTypes from 'prop-types';
+import {connect} from "react-redux";
+import {fetchOffices} from "../../actions/officeActions";
+import dateFormat from "../../utils/dateFormat";
+
 
 class AllOfficesResults extends Component {
+      componentWillMount(){
+      this.props.fetchOffices();
+  }
     render() {
         return (
             <div>
@@ -13,27 +21,16 @@ class AllOfficesResults extends Component {
                             <th>Office Name</th>
                             <th>County</th>
                             <th>Registered voters</th>
+                            <th>Registration Date</th>
                         </tr>
+                        { this.props.offices.reverse().map(office =>
                         <tr>
-                            <td><a href="office-details.html">Governor</a></td>
-                            <td>Nairobi</td>
-                            <td>10000</td>
+                            <td>{office.name}</td>
+                            <td>{office.office_type}</td>
+                            <td>{office.candindates.length}</td>
+                            <td>{dateFormat(office.date_created)}</td>
                         </tr>
-                        <tr>
-                            <td><a href="office-details.html">Senator</a></td>
-                            <td>Nairobi</td>
-                            <td>10000</td>
-                        </tr>
-                        <tr>
-                            <td><a href="office-details.html">Women Rep</a></td>
-                            <td>Nairobi</td>
-                            <td>10000</td>
-                        </tr>
-                        <tr>
-                            <td>Governor</td>
-                            <td>Nairobi</td>
-                            <td>10000</td>
-                        </tr>
+                )}
                     </table>
                 </div>
             </div>
@@ -41,4 +38,15 @@ class AllOfficesResults extends Component {
     }
 }
 
-export default AllOfficesResults;
+AllOfficesResults.propTypes = {
+  fetchOffices :propTypes.func.isRequired,
+  offices: propTypes.array.isRequired
+
+}
+
+const mapStateToProps = state => ({
+  offices: state.offices.offices,
+});
+
+
+export default connect(mapStateToProps, { fetchOffices })(AllOfficesResults);

@@ -1,4 +1,5 @@
 import {LOGIN_USER} from "./types";
+import history from '../history';
 
 
 export const loginUser = (loginData) => dispatch => {
@@ -17,9 +18,14 @@ export const loginUser = (loginData) => dispatch => {
             if(data.message){
                 localStorage.setItem("token",data.access_token)
                 localStorage.setItem("user",JSON.stringify(data.data))
-              window.alert(data.message)
-            }
+                console.log(localStorage.getItem("token"))
+                window.alert(data.message)
+
+                  }
+
   })
+
+
       .catch((err)=>{
         alert("Something unexpected happened")
       })
@@ -28,4 +34,9 @@ export const loginUser = (loginData) => dispatch => {
           payload: user
         })
         );
+
+    if(localStorage.getItem("token")){
+            history.push('/')
+            }
 };
+
