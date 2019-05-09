@@ -1,4 +1,7 @@
 import {LOGIN_USER} from "./types";
+import history from '../history';
+
+
 
 
 export const loginUser = (loginData) => dispatch => {
@@ -15,9 +18,16 @@ export const loginUser = (loginData) => dispatch => {
               window.alert(data.error)
             }
             if(data.message){
-              window.alert(data.message)
-            }
+                localStorage.setItem("token",data.access_token)
+                localStorage.setItem("user",JSON.stringify(data.data))
+                console.log(localStorage.getItem("token"))
+                window.alert(data.message)
+                history.push('/offices')
+                  }
+
   })
+
+
       .catch((err)=>{
         alert("Something unexpected happened")
       })
@@ -27,3 +37,4 @@ export const loginUser = (loginData) => dispatch => {
         })
         );
 };
+

@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { loginUser } from "../../actions/loginActions";
 import {connect} from "react-redux";
 
+
 class LoginForm extends Component {
       constructor(props){
       super(props);
@@ -25,10 +26,10 @@ class LoginForm extends Component {
           email:this.state.email,
           password:this.state.password
       };
-
       this.props.loginUser(user)
-
   }
+
+
     render() {
         return (
             <div>
@@ -37,8 +38,7 @@ class LoginForm extends Component {
                     <input type="email" placeholder="Your email.." id="login-email" name="email" onChange={this.onChange} value={this.state.email }/>
                     <label>Password</label>
                     <input type="password" placeholder="Enter password.." id="login-password" name="password" onChange={this.onChange} value={this.state.password }/>
-                    <p className="reset-password-login">Forgot your password?Click <a
-                                href="reset-password.html">here to create</a> a new password.</p>
+                    <p className="reset-password-login">This is a test application.Kindly use the following credentials to login.Email:<strong>admin@gmail.com</strong>,Password: <strong>Password2015$$</strong></p>
                    <button type="submit" className="login-button">Login</button>
                 </form>
             </div>
